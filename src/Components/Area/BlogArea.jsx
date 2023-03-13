@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { blogDataFetch } from '../Functions/microCmsFetch'
+import { blogDataFetchAll } from '../Functions/microCmsFetch'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
@@ -16,9 +16,9 @@ import { LocalOffer } from '@mui/icons-material';
 export const BlogArea = () => {
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
-    blogDataFetch(setBlogs)
+    blogDataFetchAll(setBlogs)
   },[])
-  
+
   const theme = createTheme();
   
   const PrevArrow = (props) => {
@@ -51,13 +51,17 @@ export const BlogArea = () => {
     centerMode: true
   }
   
+  const onClickLink = (data) => {
+    window.location.href = '/blogPost?' + data.id
+  }
+
   return (
     <SBlogMain className='section'>
       <SContentTitle className='contentTitle'>Blog</SContentTitle>
       <SBlogContents>
         <Slider {...settings}>
           {blogs.map(blog => (
-            <div key={blog.id}>
+            <SBlogLink key={blog.id} onClick={() => {onClickLink(blog)}}>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <StyledBox>
@@ -65,7 +69,6 @@ export const BlogArea = () => {
                     <SBlogImg src={blog.image.url} alt="Image" />
                     <STextArea>
                       <SBlogTitle>{blog.title}</SBlogTitle>
-                      {/* <div dangerouslySetInnerHTML={{ __html: blog.body }} /> */}
                       <p>{blog.headline}</p>
                       <STagArea>
                         {blog.tags.map((tag) => (
@@ -80,7 +83,7 @@ export const BlogArea = () => {
                   </Paper>
                 </StyledBox>
               </ThemeProvider>
-            </div>
+            </SBlogLink>
           ))}
         </Slider>
       </SBlogContents>
@@ -96,7 +99,7 @@ const StyledBox = styled(Box)({
   borderRadius: '15px',
 })
 
-const SBlogMain = styledComponents.div`
+const SBlogMain = styledComponents.section`
   width: 100vw;
   height: 100vh;
 `
@@ -154,4 +157,7 @@ const STagIcon = styledComponents(LocalOffer)`
   width: 0.8em !important;
   height: 0.8em !important;
   margin-right: 0.3em;
+`
+const SBlogLink = styledComponents.div`
+  cursor: pointer;
 `

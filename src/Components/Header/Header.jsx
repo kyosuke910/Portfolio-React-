@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { HeaderMenu } from "../../Config/MenuConfig"
+import { HeaderMenu, SubPageHeaderMenu } from "../../Config/MenuConfig"
 
 export const Header = (props) => {
   const { state } = props
@@ -13,6 +13,21 @@ export const Header = (props) => {
       <div>
         {HeaderMenu.map(menu => (
           <SNavLink key={menu.index} href={menu.link} className={linkName === menu.link && 'activeLink'} >{menu.name}</SNavLink>
+        ))}
+      </div>
+    </SHeaderNav>
+  )
+}
+
+export const SubPageHeader = () => {
+  return(
+    <SHeaderNav>
+      <div>
+        <STopLink href="/#top">KYOSUKE OCHIAI</STopLink>
+      </div>
+      <div>
+        {SubPageHeaderMenu.map(menu => (
+          <SNavLink key={menu.index} href={menu.link}>{menu.name}</SNavLink>
         ))}
       </div>
     </SHeaderNav>
