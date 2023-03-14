@@ -12,7 +12,7 @@ export const Header = (props) => {
       </div>
       <div>
         {HeaderMenu.map(menu => (
-          <SNavLink key={menu.index} href={menu.link} className={linkName === menu.link && 'activeLink'} >{menu.name}</SNavLink>
+          <a key={menu.link} href={menu.link} className={linkName === menu.link ? 'activeLink' : 'navLink'} >{menu.name}</a>
         ))}
       </div>
     </SHeaderNav>
@@ -27,7 +27,7 @@ export const SubPageHeader = () => {
       </div>
       <div>
         {SubPageHeaderMenu.map(menu => (
-          <SNavLink key={menu.index} href={menu.link}>{menu.name}</SNavLink>
+          <a key={menu.link} href={menu.link} className="navLink">{menu.name}</a>
         ))}
       </div>
     </SHeaderNav>
@@ -50,4 +50,23 @@ const STopLink = styled.a`
 const SNavLink = styled.a`
   color: #fff;
   margin-left: 1em;
+  position: relative;
+  &:after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: -0.5vw;
+    left: 0%;
+    /*線の形状*/
+    width: 100%;
+    height: 2px;
+    background:#fff;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: left top;/*左上基点*/
+  }
+  &:hover:after {
+    transform: scale(1, 1);
+  }
 `

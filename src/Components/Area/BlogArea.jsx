@@ -87,7 +87,7 @@ export const BlogArea = () => {
           ))}
         </Slider>
       </SBlogContents>
-      <button>Lean More</button>
+      <SMoreBtn className='mainBtn'>Lean More</SMoreBtn>
   </SBlogMain>
   )
 }
@@ -160,4 +160,9 @@ const STagIcon = styledComponents(LocalOffer)`
 `
 const SBlogLink = styledComponents.div`
   cursor: pointer;
+`
+const SMoreBtn = styledComponents.button`
+  position: absolute;
+  bottom: 9%;
+  right: 5%;
 `

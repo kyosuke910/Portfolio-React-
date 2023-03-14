@@ -4,19 +4,36 @@ import { useEffect, useState } from "react"
 import { fetchBlogById } from "../Components/Functions/microCmsFetch"
 
 export const BlogPost = () => {
-  const blogId = window.location.search
+  const idParam = window.location.search
+  const blogId = idParam.slice(1)
+
   const [blog, setBlog] = useState()
 
   useEffect(() => {
-    const blogData = fetchBlogById(blogId)
-    console.log(blogData)
-  },[])
+    const getBlogData = async () => {
+      const blogData = await fetchBlogById(blogId)
+      setBlog(blogData.contents[0])
+    }
+    getBlogData()
+  }, [blogId, setBlog])
 
   return(
     <main>
       <SubPageHeader />
-      <h1>ブログページ</h1>
-      <p>{blog}</p>
+      {blog ? (
+      <>
+        <h1>ブログページ</h1>
+        <img src={blog.image.url} alt="" />
+        <p>{blog.title}</p>
+        <div dangerouslySetInnerHTML={{__html: blog.body}}></div>
+        <p>{blog.publishedAt}</p>
+        <p>{blog.revisedAt}</p>
+      </>
+    ) : (
+      <div className="loadingArea">
+        <span className="loader"></span>
+      </div>
+    )}
     </main>
   )
 }

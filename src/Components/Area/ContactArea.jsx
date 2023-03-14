@@ -64,7 +64,7 @@ export const ContactArea = () => {
                 </p>
               </SCautionArea>
             </STextAreaWrap>
-            <button onClick={onClickConfirm}>Confirmation</button>
+            <SSubmitBtn className="mainBtn" onClick={onClickConfirm}>Confirmation</SSubmitBtn>
           </SInputArea>
         </SContactContents>
       </section>
@@ -114,4 +114,10 @@ const SCautionArea = styled.div`
   background: #fff;
   overflow: auto;
   padding: 0.4em;
+`
+const SSubmitBtn = styled.button`
+  width: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.8em;
 `
