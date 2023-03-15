@@ -12,6 +12,12 @@ export const ContactConfirm = () => {
 
   const sendData = location.state
 
+  // Returnボタンを押した際の処理
+  const onClickBack = () => {
+    // 情報を保持したままフォームへ戻る
+    history.push({pathname: '/#contact', state: sendData})
+  }
+
   return(
     <>
       <SubPageHeader />
@@ -23,6 +29,7 @@ export const ContactConfirm = () => {
       <p>Address: {sendData.address}</p>
       <p>Way To Contact: {sendData.wayToContact}</p>
       <p>Message: {sendData.message}</p>
+      <button onClick={onClickBack}>Return</button>
     </>
 
   )

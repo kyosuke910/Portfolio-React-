@@ -1,8 +1,18 @@
-import { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useHistory, useLocation } from "react-router-dom"
+import StarIcon from '@mui/icons-material/Star';
 import styled from "styled-components"
+import { mailFormValid } from "../Functions/MailFormValid";
 
 export const ContactArea = () => {
+  const history = useHistory()
+  const location = useLocation()
+
+  if(location.state !== undefined) {
+    const enteredData = location.state
+    console.log(enteredData)
+  }
+
   const [inputData,setInputData] = useState({
     name : '',
     companyName: '',
@@ -10,11 +20,29 @@ export const ContactArea = () => {
     phoneNumber: '',
     address: '',
     wayToContact: '',
-    Message: '',
+    message: '',
   })
-  const history = useHistory()
+  const [validFlags, setValidFlags] = useState({
+    nameNotEntered : false, // 名前未入力
+    mailNotEntered : false, // メールアドレス未入力
+    mailWrongFormat : false, // メールアドレス形式違い
+    phoneNumberNotEntered : false, // 電話番号未入力
+    wayToContactNotEntered : false, // 連絡手段未入力
+    messageNotEntered : false // メッセージ未入力
+  })
 
   const onClickConfirm = () => {
+    // 入力された値をチェック
+    const errCheck = mailFormValid(inputData)
+    // 結果をセット
+    setValidFlags(errCheck)
+    // errCheckオブジェクトにtrueが含まれているかチェック
+    const allKeysTrue = Object.values(errCheck).includes(true)
+    // 含まれていたら処理を終了
+    if(allKeysTrue) {
+      return
+    }
+    // 正しく入力されていれば確認画面へ遷移
     history.push({pathname: '/contactConfirm', state: inputData})
   }
 
@@ -24,7 +52,13 @@ export const ContactArea = () => {
         <SContactContents>
           <SInputArea>
             <SInputWrap>
-              <p>Name</p>
+              <p>
+                Name
+                <SRequired>
+                  <StarIcon style={{ fontSize: '1em' }} />
+                  { validFlags.nameNotEntered && <SValidMessage>名前を入力してください。</SValidMessage> }
+                </SRequired>
+              </p>
               <SInput type="text" placeholder="お名前" onChange={(e)=> setInputData({...inputData, name:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
@@ -32,11 +66,24 @@ export const ContactArea = () => {
               <SInput type="text" placeholder="会社名" onChange={(e)=> setInputData({...inputData, companyName:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
-              <p>Mail</p>
+              <p>
+                Mail
+                <SRequired>
+                  { inputData.wayToContact === 'メール' && <StarIcon style={{ fontSize: '1em' }} /> }
+                </SRequired>
+                { validFlags.mailNotEntered && <SValidMessage>メールアドレスを入力してください。</SValidMessage> }
+                { validFlags.mailWrongFormat && <SValidMessage>正しいメールアドレスを入力してください。</SValidMessage> }
+              </p>
               <SInput type="text" placeholder="メールアドレス" onChange={(e)=> setInputData({...inputData, mail:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
-              <p>Phone Number</p>
+              <p>
+                Phone Number
+                <SRequired>
+                  { inputData.wayToContact === 'お電話' && <StarIcon style={{ fontSize: '1em' }} /> }
+                </SRequired>
+                { validFlags.phoneNumberNotEntered && <SValidMessage>電話番号を入力してください。</SValidMessage> }
+              </p>
               <SInput type="text" placeholder="電話番号" onChange={(e)=> setInputData({...inputData, phoneNumber:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
@@ -44,11 +91,28 @@ export const ContactArea = () => {
               <SInput type="text" placeholder="ご住所" onChange={(e)=> setInputData({...inputData, address:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
-              <p>Ways To Contact</p>
-              <SInput type="text" placeholder="お返事の手段" onChange={(e)=> setInputData({...inputData, wayToContact:e.target.value})} />
+              <p>Ways To Contact
+                <SRequired>
+                  <StarIcon style={{ fontSize: '1em' }} />
+                </SRequired>
+                { validFlags.wayToContactNotEntered && <SValidMessage>ご連絡手段を選択してください。</SValidMessage> }
+              </p>
+              <SSelectForm value={inputData.wayToContact} onChange={(e)=> setInputData({...inputData, wayToContact:e.target.value})} >
+                <option value="" disabled>
+                  選んでください
+                </option>
+                <option value="メール">メール</option>
+                <option value="お電話">お電話</option>
+              </SSelectForm>
             </SInputWrap>
             <STextAreaWrap>
-              <p>Message</p>
+              <p>
+                Message
+                <SRequired>
+                  <StarIcon style={{ fontSize: '1em' }} />
+                </SRequired>
+                { validFlags.messageNotEntered && <SValidMessage>メッセージを入力してください。</SValidMessage> }
+              </p>
               <STextArea placeholder="メッセージ" onChange={(e)=> setInputData({...inputData, message:e.target.value})} />
             </STextAreaWrap>
             <STextAreaWrap>
@@ -102,6 +166,10 @@ const SInput = styled.input`
   width: 100%;
   padding: 0.4em;
 `
+const SSelectForm = styled.select`
+  width: 100%;
+  padding: 0.4em;
+`
 const STextArea = styled.textarea`
   width: 100%;
   height: 20vh;
@@ -120,4 +188,16 @@ const SSubmitBtn = styled.button`
   left: 50%;
   transform: translateX(-50%);
   margin-top: 0.8em;
+`
+const SRequired = styled.span`
+  color: #df0000;
+  vertical-align: middle;
+  margin: 0 0.2em;
+`
+const SValidMessage = styled.span`
+  color: #df0000;
+  font-size: 0.8em;
+  margin-left: 0.3em;
+  font-weight: bold;
+  vertical-align: text-bottom;
 `

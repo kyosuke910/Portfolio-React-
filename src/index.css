@@ -18,6 +18,9 @@ code {
 input:focus {
   outline: none;
 }
+select:focus {
+  outline: none;
+}
 textarea:focus {
   outline: none;
 }
@@ -26,7 +29,7 @@ a:hover {
 }
 
 .loadingArea {
-  background: rgba(0,0,0,0.8);
+  background: #000;
   position: fixed;
   top: 0;
   left: 0;

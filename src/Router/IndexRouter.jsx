@@ -15,6 +15,18 @@ export const IndexRouter = () => {
       <Route path='/blogPost'>
           <BlogPost />
       </Route>
+      <Route path='/#about'>
+        <FrontPage />
+      </Route>
+      <Route path='/#works'>
+        <FrontPage />
+      </Route>
+      <Route path='/#blog'>
+        <FrontPage />
+      </Route>
+      <Route path='/#contact'>
+        <FrontPage />
+      </Route>
     </Switch>
   )
 }

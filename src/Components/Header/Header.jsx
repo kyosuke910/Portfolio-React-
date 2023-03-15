@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { HeaderMenu, SubPageHeaderMenu } from "../../Config/MenuConfig"
+import { Link } from "react-router-dom"
 
 export const Header = (props) => {
   const { state } = props
@@ -27,7 +28,7 @@ export const SubPageHeader = () => {
       </div>
       <div>
         {SubPageHeaderMenu.map(menu => (
-          <a key={menu.link} href={menu.link} className="navLink">{menu.name}</a>
+          <Link key={menu.link} to={menu.link} className="navLink">{menu.name}</Link>
         ))}
       </div>
     </SHeaderNav>
