@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 import StarIcon from '@mui/icons-material/Star';
 import styled from "styled-components"
@@ -8,20 +8,23 @@ export const ContactArea = () => {
   const history = useHistory()
   const location = useLocation()
 
-  if(location.state !== undefined) {
-    const enteredData = location.state
-    console.log(enteredData)
-  }
+  const enteredData = useMemo(() => {
+    if (location.state !== undefined) {
+      return location.state;
+    } else {
+      return {
+        name : '',
+        companyName: '',
+        mail: '',
+        phoneNumber: '',
+        address: '',
+        wayToContact: '',
+        message: '',
+      };
+    }
+  }, [location.state])
 
-  const [inputData,setInputData] = useState({
-    name : '',
-    companyName: '',
-    mail: '',
-    phoneNumber: '',
-    address: '',
-    wayToContact: '',
-    message: '',
-  })
+  const [inputData, setInputData] = useState(enteredData)
   const [validFlags, setValidFlags] = useState({
     nameNotEntered : false, // 名前未入力
     mailNotEntered : false, // メールアドレス未入力
@@ -30,7 +33,7 @@ export const ContactArea = () => {
     wayToContactNotEntered : false, // 連絡手段未入力
     messageNotEntered : false // メッセージ未入力
   })
-
+console.log(inputData)
   const onClickConfirm = () => {
     // 入力された値をチェック
     const errCheck = mailFormValid(inputData)
@@ -59,11 +62,11 @@ export const ContactArea = () => {
                   { validFlags.nameNotEntered && <SValidMessage>名前を入力してください。</SValidMessage> }
                 </SRequired>
               </p>
-              <SInput type="text" placeholder="お名前" onChange={(e)=> setInputData({...inputData, name:e.target.value})} />
+              <SInput type="text" value={inputData.name} placeholder="お名前" onChange={(e)=> setInputData({...inputData, name:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
               <p>Company Name</p>
-              <SInput type="text" placeholder="会社名" onChange={(e)=> setInputData({...inputData, companyName:e.target.value})} />
+              <SInput type="text" value={inputData.companyName} placeholder="会社名" onChange={(e)=> setInputData({...inputData, companyName:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
               <p>
@@ -74,7 +77,7 @@ export const ContactArea = () => {
                 { validFlags.mailNotEntered && <SValidMessage>メールアドレスを入力してください。</SValidMessage> }
                 { validFlags.mailWrongFormat && <SValidMessage>正しいメールアドレスを入力してください。</SValidMessage> }
               </p>
-              <SInput type="text" placeholder="メールアドレス" onChange={(e)=> setInputData({...inputData, mail:e.target.value})} />
+              <SInput type="text" value={inputData.mail} placeholder="メールアドレス" onChange={(e)=> setInputData({...inputData, mail:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
               <p>
@@ -84,11 +87,11 @@ export const ContactArea = () => {
                 </SRequired>
                 { validFlags.phoneNumberNotEntered && <SValidMessage>電話番号を入力してください。</SValidMessage> }
               </p>
-              <SInput type="text" placeholder="電話番号" onChange={(e)=> setInputData({...inputData, phoneNumber:e.target.value})} />
+              <SInput type="text" value={inputData.phoneNumber} placeholder="電話番号" onChange={(e)=> setInputData({...inputData, phoneNumber:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
               <p>Address</p>
-              <SInput type="text" placeholder="ご住所" onChange={(e)=> setInputData({...inputData, address:e.target.value})} />
+              <SInput type="text" value={inputData.address} placeholder="ご住所" onChange={(e)=> setInputData({...inputData, address:e.target.value})} />
             </SInputWrap>
             <SInputWrap>
               <p>Ways To Contact
@@ -113,19 +116,19 @@ export const ContactArea = () => {
                 </SRequired>
                 { validFlags.messageNotEntered && <SValidMessage>メッセージを入力してください。</SValidMessage> }
               </p>
-              <STextArea placeholder="メッセージ" onChange={(e)=> setInputData({...inputData, message:e.target.value})} />
+              <STextArea value={inputData.message} placeholder="メッセージ" onChange={(e)=> setInputData({...inputData, message:e.target.value})} />
             </STextAreaWrap>
             <STextAreaWrap>
               <p>Caution</p>
               <SCautionArea>
-                <p>
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                  あああああああああああああああああああああああああああああああああああああああ<br />
-                </p>
+                <SCautionText>
+                  *は必須項目となっております。必ず入力をお願いいたします。<br />
+                  お問合せをいただいてから３日以内に返信を心がけておりますが、状況によっては返信が遅れる場合がございます。<br />
+                  制作の依頼、その他お仕事の依頼についてのお問い合わせ、見積もり依頼等のお問合せは必ず返信いたしますが、営業や勧誘等のお問い合わせについては返信しない場合がございます。<br />
+                  お問合せをいただいた際に得た個人情報はお問合せの返信、見積もり作成等必要な範囲のみの使用をさせていただきます。<br />
+                  即答できないお問い合わせに関しましてはその旨返信をいたしますが、お時間を頂戴する場合がございます。<br />
+                  あらかじめご了承ください。
+                </SCautionText>
               </SCautionArea>
             </STextAreaWrap>
             <SSubmitBtn className="mainBtn" onClick={onClickConfirm}>Confirmation</SSubmitBtn>
@@ -200,4 +203,7 @@ const SValidMessage = styled.span`
   margin-left: 0.3em;
   font-weight: bold;
   vertical-align: text-bottom;
+`
+const SCautionText = styled.p`
+  font-size: 0.8em;
 `

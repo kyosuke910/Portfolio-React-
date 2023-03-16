@@ -44,30 +44,8 @@ const SHeaderNav = styled.nav`
   font-size: 1.5em;
   top: 0;
   z-index: 10000;
+  background: #000;
 `
 const STopLink = styled.a`
   color: #fff;
-`
-const SNavLink = styled.a`
-  color: #fff;
-  margin-left: 1em;
-  position: relative;
-  &:after {
-    content: '';
-    /*絶対配置で線の位置を決める*/
-    position: absolute;
-    bottom: -0.5vw;
-    left: 0%;
-    /*線の形状*/
-    width: 100%;
-    height: 2px;
-    background:#fff;
-    /*アニメーションの指定*/
-    transition: all .3s;
-    transform: scale(0, 1);/*X方向0、Y方向1*/
-    transform-origin: left top;/*左上基点*/
-  }
-  &:hover:after {
-    transform: scale(1, 1);
-  }
 `
