@@ -2,6 +2,7 @@ import { useHistory, useLocation } from "react-router-dom"
 import { SubPageHeader } from "../Components/Header/Header"
 import styled from "styled-components"
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
+import emailjs from '@emailjs/browser'
 
 export const ContactConfirm = () => {
   const location = useLocation()
@@ -20,6 +21,26 @@ export const ContactConfirm = () => {
     history.push({pathname: '/#contact', state: sendData})
   }
 
+  // Submitボタンを押した際の処理
+  const onCLickSubmit = () => {
+    const publicKey = process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY
+    const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID
+    const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID
+
+    emailjs.init(publicKey)
+
+    const template_param = {
+      name : sendData.name,
+      companyName : sendData.companyName,
+      mail : sendData.mail,
+      phoneNumber : sendData.phoneNumber,
+      wayToContact : sendData.wayToContact,
+      message: sendData.message
+    }
+    emailjs.send(serviceId, templateId, template_param, publicKey).then(() => {
+      history.push({pathname: '/contactThanks', state: 'sendEmail'})
+    })
+  }
   return(
     <>
       <SubPageHeader />
@@ -63,8 +84,16 @@ export const ContactConfirm = () => {
         <SData>{sendData.message}</SData>
       </STextArea>
       <SButtonArea>
-        <SReturnButton onClick={onClickBack}><SLeftArrow />Return</SReturnButton>
-        <SSubmitButton >Submit<SRightArrow /></SSubmitButton>
+        <button className='subBtn leftSubBtn bgRight' onClick={onClickBack}>
+          <span>
+            <AiOutlineLeft className='leftSubBtnArrow' />Return
+          </span>
+        </button>
+        <button className='subBtn rightSubBtn bgLeft' onClick={onCLickSubmit}>
+          <span>
+            Submit<AiOutlineRight className='rightSubBtnArrow'/>
+          </span>
+        </button>
       </SButtonArea>
     </>
 
@@ -111,36 +140,4 @@ const SButtonArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-const SButton = styled.button`
-  width: 17%;
-  padding: 0.5em 0;
-  font-size: 1.5em;
-  cursor: pointer;
-  font-weight: bold;
-  color: #fff;
-  border: 1px solid #fff;
-  background : #000;
-  margin-top: 2em;
-  transition: 0.3s;
-`
-const SReturnButton = styled(SButton)`
-  &:hover {
-    padding-right: 2em;
-  }
-`
-const SSubmitButton = styled(SButton)`
-  &:hover {
-    padding-left: 2em;
-  }
-`
-const SLeftArrow = styled(AiOutlineLeft)`
-  vertical-align: bottom;
-  margin-right: 0.5em;
-  transition: 0.3s;
-`
-const SRightArrow = styled(AiOutlineRight)`
-  vertical-align: bottom;
-  margin-left: 0.5em;
-  transition: 0.3s;
 `

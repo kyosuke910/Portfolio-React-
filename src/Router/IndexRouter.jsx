@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom"
 import { ContactConfirm } from "../Pages/ContactConfirm"
 import { FrontPage } from "../Pages/FrontPage"
 import { BlogPost } from "../Pages/BlogPost"
+import { ContactThanks } from "../Pages/ContactThanks"
 
 export const IndexRouter = () => {
   return(
@@ -11,6 +12,9 @@ export const IndexRouter = () => {
       </Route>
       <Route path='/contactConfirm'>
           <ContactConfirm />
+      </Route>
+      <Route path='/contactThanks'>
+          <ContactThanks />
       </Route>
       <Route path='/blogPost'>
           <BlogPost />
