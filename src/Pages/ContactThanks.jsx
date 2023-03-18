@@ -1,8 +1,7 @@
 import { useHistory, useLocation } from "react-router-dom"
 import { SubPageHeader } from "../Components/Header/Header"
 import styled from "styled-components"
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-import emailjs from '@emailjs/browser'
+import { AiOutlineLeft } from 'react-icons/ai'
 
 export const ContactThanks = () => {
   const location = useLocation()

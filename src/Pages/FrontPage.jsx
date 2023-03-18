@@ -3,6 +3,7 @@ import { BlogArea } from '.././Components/Area/BlogArea'
 import { Header } from '.././Components/Header/Header';
 import { useCallback, useState } from 'react';
 import { ContactArea } from '.././Components/Area/ContactArea';
+import { AboutMeArea } from '../Components/Area/AboutMeArea';
 
 export const FrontPage = () => {
   const anchors = ['top','about', 'works', 'blog','contact']
@@ -32,9 +33,7 @@ export const FrontPage = () => {
                 <div className="section">
                   Top
                 </div>
-                <div className="section">
-                  about
-                </div>
+                <AboutMeArea />
                 <div className="section">
                   works
                 </div>

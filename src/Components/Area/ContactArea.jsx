@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 import StarIcon from '@mui/icons-material/Star';
 import styled from "styled-components"
