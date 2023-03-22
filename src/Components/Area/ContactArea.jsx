@@ -167,16 +167,16 @@ const STextAreaWrap = styled.div`
 `
 const SInput = styled.input`
   width: 100%;
-  padding: 0.4em;
+  padding: 0.8em;
 `
 const SSelectForm = styled.select`
   width: 100%;
-  padding: 0.4em;
+  padding: 0.8em;
 `
 const STextArea = styled.textarea`
   width: 100%;
-  height: 20vh;
-  padding: 0.4em;
+  height: 12vh;
+  padding: 0.8em;
   resize: none;
 `
 const SCautionArea = styled.div`
@@ -184,7 +184,7 @@ const SCautionArea = styled.div`
   height: 10vh;
   background: #fff;
   overflow: auto;
-  padding: 0.4em;
+  padding: 0.8em;
 `
 const SSubmitBtn = styled.button`
   width: 40%;

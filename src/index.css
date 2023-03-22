@@ -8,7 +8,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #000 !important;
-  color: #fff;
+  color: #fff !important;
+  font-size: 1.2vw !important;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -363,4 +364,11 @@ a:hover {
 .rightSubBtnArrow {
   vertical-align: bottom;
   margin-left: 0.5em;
+}
+.subContentsTitle {
+  position: absolute;
+  font-size: 6em;
+  background: rgba(112, 112, 112, 0.7);
+  line-height: 1.2;
+  padding: 0.1em 1.5em;
 }

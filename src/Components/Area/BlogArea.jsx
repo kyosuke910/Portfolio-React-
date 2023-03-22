@@ -12,8 +12,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { LocalOffer } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom'
 
 export const BlogArea = () => {
+  const history = useHistory()
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
     blogDataFetchAll(setBlogs)
@@ -55,6 +57,10 @@ export const BlogArea = () => {
     window.location.href = '/blogPost?' + data.id
   }
 
+  const onClickMoreBtn = () => {
+    history.push('/blogList')
+  }
+
   return (
     <SBlogMain className='section'>
       <SContentTitle className='contentTitle'>Blog</SContentTitle>
@@ -87,7 +93,7 @@ export const BlogArea = () => {
           ))}
         </Slider>
       </SBlogContents>
-      <SMoreBtn className='mainBtn'>Lean More</SMoreBtn>
+      <SMoreBtn onClick={onClickMoreBtn} className='mainBtn'>Lean More</SMoreBtn>
   </SBlogMain>
   )
 }

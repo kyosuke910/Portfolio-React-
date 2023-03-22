@@ -26,7 +26,7 @@ export const BlogPost = () => {
     // BlogListボタンを押した際の処理
     const onClickBlogList = () => {
       // ブログ一覧ページへ遷移
-      history.push('/')
+      history.push('/blogList')
     }
     // Topボタンを押した際の処理
     const onClickTop = () => {
@@ -61,7 +61,7 @@ export const BlogPost = () => {
         <SButtonArea>
           <button className='subBtn leftSubBtn bgRight' onClick={onClickBlogList}>
             <span>
-              <AiOutlineLeft className='leftSubBtnArrow' />BlogList
+              <AiOutlineLeft className='leftSubBtnArrow' />Blog
             </span>
           </button>
           <button className='subBtn leftSubBtn bgRight' onClick={onClickTop}>

@@ -125,13 +125,14 @@ const SProfileImg = styled.img`
   left: 8%;
 `
 const SProfileTextArea = styled.div`
-  font-size: 1.2em;
+  font-size: 1em;
   position: absolute;
   top: 25%;
   right: 5%;
   background: #fff;
   width: 60%;
   padding: 3em 2em;
+  color: #000;
 `
 const STextFx = styled.div`
   width: 100%;
