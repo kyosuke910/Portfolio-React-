@@ -112,7 +112,7 @@ a:hover {
 .cover-side::after {
   content: "";
   position: absolute;
-  z-index: 9999999;
+  z-index: 9;
   top: 0;
   left: 0;
   right: 0;
@@ -138,30 +138,22 @@ a:hover {
           animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes kf-cover-slide {
+@keyframes kf-cover-slide {
   0% {
-    -webkit-transform-origin: left;
-            transform-origin: left;
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform-origin: left;
+    transform: scaleX(0);
   }
   50% {
-    -webkit-transform-origin: left;
-            transform-origin: left;
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform-origin: left;
+    transform: scaleX(1);
   }
   50.1% {
-    -webkit-transform-origin: right;
-            transform-origin: right;
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform-origin: right;
+    transform: scaleX(1);
   }
   100% {
-    -webkit-transform-origin: right;
-            transform-origin: right;
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform-origin: right;
+    transform: scaleX(0);
   }
 }
 
@@ -169,7 +161,7 @@ a:hover {
   position: absolute;
   top: 50%;
   background: rgba(255,255,255,0.4);
-  z-index:1000;
+  z-index:9;
   padding: 1.3em 0.1em;
   line-height: 1;
   font-size: 3em;
@@ -276,6 +268,7 @@ a:hover {
   position: relative;
   border-radius: 9999px;
   font-size: 1.5em;
+  z-index: 10;
 }
 .mainBtn::after {
   content: "";

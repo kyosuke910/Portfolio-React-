@@ -13,9 +13,16 @@ import "slick-carousel/slick/slick-theme.css"
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { LocalOffer } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
 
 export const BlogArea = () => {
   const history = useHistory()
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+  })
+
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
     blogDataFetchAll(setBlogs)
@@ -64,7 +71,7 @@ export const BlogArea = () => {
   return (
     <SBlogMain className='section'>
       <SContentTitle className='contentTitle'>Blog</SContentTitle>
-      <SBlogContents>
+      <SBlogContents className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
         <Slider {...settings}>
           {blogs.map(blog => (
             <SBlogLink key={blog.id} onClick={() => {onClickLink(blog)}}>

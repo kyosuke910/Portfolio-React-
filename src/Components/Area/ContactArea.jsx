@@ -3,10 +3,16 @@ import { useHistory, useLocation } from "react-router-dom"
 import StarIcon from '@mui/icons-material/Star';
 import styled from "styled-components"
 import { mailFormValid } from "../Functions/MailFormValid";
+import { useInView } from "react-intersection-observer";
 
 export const ContactArea = () => {
   const history = useHistory()
   const location = useLocation()
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+  })
 
   const enteredData = useMemo(() => {
     if (location.state !== undefined) {
@@ -33,7 +39,7 @@ export const ContactArea = () => {
     wayToContactNotEntered : false, // 連絡手段未入力
     messageNotEntered : false // メッセージ未入力
   })
-console.log(inputData)
+
   const onClickConfirm = () => {
     // 入力された値をチェック
     const errCheck = mailFormValid(inputData)
@@ -52,7 +58,7 @@ console.log(inputData)
   return(
       <section className="section">
         <SContentTitle className="contentTitle">Contact</SContentTitle>
-        <SContactContents>
+        <SContactContents className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
           <SInputArea>
             <SInputWrap>
               <p>
@@ -191,6 +197,7 @@ const SSubmitBtn = styled.button`
   left: 50%;
   transform: translateX(-50%);
   margin-top: 0.8em;
+  z-index: 9;
 `
 const SRequired = styled.span`
   color: #df0000;
@@ -206,4 +213,5 @@ const SValidMessage = styled.span`
 `
 const SCautionText = styled.p`
   font-size: 0.8em;
+  color: #000;
 `

@@ -5,8 +5,10 @@ import { useCallback, useState } from 'react';
 import { ContactArea } from '.././Components/Area/ContactArea';
 import { AboutMeArea } from '../Components/Area/AboutMeArea';
 import { WorksArea } from '../Components/Area/WorksArea';
+import { TopArea } from '../Components/Area/TopArea';
 
 export const FrontPage = () => {
+
   const anchors = ['top','about', 'works', 'blog','contact']
   const [activeSection, setActiveSection] = useState('top');
   
@@ -31,9 +33,7 @@ export const FrontPage = () => {
           return (
             <>
               <ReactFullpage.Wrapper>
-                <div className="section">
-                  Top
-                </div>
+                <TopArea />
                 <AboutMeArea />
                 <WorksArea />
                 <BlogArea />

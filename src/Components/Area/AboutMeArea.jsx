@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
 import { fetchProfile } from "../Functions/microCmsFetch"
 import styled from "styled-components"
+import { useInView } from "react-intersection-observer"
 
 export const AboutMeArea = () => {
   const [profile, setProfile] = useState([])
   useEffect(() => {
     fetchProfile(setProfile)
   },[])
-  console.log(profile)
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+  })
+
   return(
     <section className="section">
       {profile.name ?
@@ -27,7 +33,7 @@ export const AboutMeArea = () => {
             <SSnsIcon src="/images/aboutMe/github-icon.png" alt="githubアイコン" />
           </SSnsLink>
         </SSnsLinArea>
-        <SProfileArea>
+        <SProfileArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
           <SProfileImg src={profile.image.url} alt="プロフィール画像" />
           <SProfileTextArea>
             <STextFx>
