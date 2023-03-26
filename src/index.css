@@ -1,15 +1,18 @@
 @import "~bulma/css/bulma.min.css";
+@font-face {
+  font-family: 'NotoSansJP';
+  src: url('../public/fonts/Noto_Sans_JP/NotoSansJP-Regular.otf') format('truetype');
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'NotoSansJP', 'Helvetica', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #000 !important;
   color: #fff !important;
   font-size: 1.2vw !important;
+  overflow-x: hidden;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -156,6 +159,52 @@ a:hover {
     transform: scaleX(0);
   }
 }
+.arrows {
+  width: 60px;
+  height: 72px;
+  position: absolute;
+  left: 50%;
+  margin-left: -30px;
+  top: 5vw;
+  opacity: 1;
+}
+
+.arrows path {
+  stroke: #fff;
+  fill: transparent;
+  stroke-width: 1px;  
+  animation: arrow 2s infinite;
+  -webkit-animation: arrow 2s infinite; 
+}
+
+@keyframes arrow
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+.arrows path.a1 {
+  animation-delay:-1s;
+  -webkit-animation-delay:-1s; /* Safari 和 Chrome */
+}
+.arrows path.a2 {
+  animation-delay:-0.5s;
+  -webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+}
+
+.arrows path.a3 { 
+  animation-delay:0s;
+}
 
 .arrow {
   position: absolute;
@@ -190,8 +239,8 @@ a:hover {
   z-index: 10;
   position: absolute;
   font-size:7em;
-  font-weight: bold;
   letter-spacing: 0.03em;
+  opacity: 0;
 }
 .slidesNav ul li {
   height: 2em;
@@ -255,7 +304,9 @@ a:hover {
   margin-left: 1em;
   position: relative;
 }
-
+.mainBtnArea {
+  overflow-x: hidden;
+}
 .mainBtn {
   display:inline-block;
   background:#E05F73;
@@ -269,6 +320,7 @@ a:hover {
   border-radius: 9999px;
   font-size: 1.5em;
   z-index: 10;
+  box-sizing: border-box;
 }
 .mainBtn::after {
   content: "";
@@ -365,3 +417,46 @@ a:hover {
   line-height: 1.2;
   padding: 0.1em 1.5em;
 }
+.show {
+  opacity: 1 !important;
+}
+.titleDelay {
+  animation-delay: 1.5s;
+}
+.delay {
+  animation-delay: 2s;
+}
+.fadeUp{
+  animation-name:fadeUpAnime;
+  animation-duration:0.5s;
+  animation-fill-mode:forwards;
+  opacity:0;
+  }
+  
+  @keyframes fadeUpAnime{
+    from {
+      opacity: 0;
+    transform: translateY(50px);
+    }
+  
+    to {
+      opacity: 1;
+    transform: translateY(0);
+    }
+  }
+  
+  .iconAnime {
+    opacity: 1;
+    animation-name: rotateYAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }
+  @keyframes rotateYAnime {
+    from {
+      transform: rotateY(0);
+    }
+    to {
+      transform: rotateY(-360deg);
+    }
+  }

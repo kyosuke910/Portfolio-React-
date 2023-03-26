@@ -16,14 +16,19 @@ export const WorksArea = () => {
 
   return(
     <section className="section">
-      <SContentTitle className="contentTitle">Works</SContentTitle>
-      <SImageArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
-        <SImage src="images/works/work_img.jpg" alt="Works画像" />
-      </SImageArea>
-      <SMoreBtn onClick={onClickMoreBtn} className='mainBtn'>Lean More</SMoreBtn>
+      <SContents>
+        <SContentTitle className={`contentTitle ${inView ? 'titleDelay fadeUp' : ''}`}>Works</SContentTitle>
+        <SImageArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
+          <SImage src="images/works/work_img.jpg" alt="Works画像" />
+        </SImageArea>
+        <SMoreBtn onClick={onClickMoreBtn} className={inView && 'delay fadeUp mainBtn'}>Lean More</SMoreBtn>
+      </SContents>
     </section>
   )
 }
+const SContents = styled.div`
+  height: 80vh;
+`
 const SContentTitle = styled.h2`
   top: 20%;
   left: 15%;
@@ -38,6 +43,6 @@ const SImage = styled.img`
 width: 100%;
 `
 const SMoreBtn = styled.button`
-  bottom: 5%;
+  top: 40%;
   left: 18%;
 `

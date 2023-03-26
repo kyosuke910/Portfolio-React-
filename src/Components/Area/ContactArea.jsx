@@ -57,7 +57,7 @@ export const ContactArea = () => {
 
   return(
       <section className="section">
-        <SContentTitle className="contentTitle">Contact</SContentTitle>
+        <SContentTitle className={`contentTitle ${inView ? 'titleDelay fadeUp' : ''}`}>Contact</SContentTitle>
         <SContactContents className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
           <SInputArea>
             <SInputWrap>
@@ -137,7 +137,7 @@ export const ContactArea = () => {
                 </SCautionText>
               </SCautionArea>
             </STextAreaWrap>
-            <SSubmitBtn className="mainBtn" onClick={onClickConfirm}>Confirmation</SSubmitBtn>
+            <SSubmitBtn className={inView && 'delay fadeUp mainBtn'} onClick={onClickConfirm}>Confirmation</SSubmitBtn>
           </SInputArea>
         </SContactContents>
       </section>
@@ -195,7 +195,7 @@ const SCautionArea = styled.div`
 const SSubmitBtn = styled.button`
   width: 40%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) !important;
   margin-top: 0.8em;
   z-index: 9;
 `

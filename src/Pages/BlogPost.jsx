@@ -31,7 +31,7 @@ export const BlogPost = () => {
     // Topボタンを押した際の処理
     const onClickTop = () => {
       // トップページへ遷移
-      history.push('/')
+      history.push('/#top')
     }
 
   return(

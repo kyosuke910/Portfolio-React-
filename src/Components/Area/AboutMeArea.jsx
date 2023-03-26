@@ -18,8 +18,8 @@ export const AboutMeArea = () => {
     <section className="section">
       {profile.name ?
       <div>
-        <SContentTitle className='contentTitle'>About Me</SContentTitle>
-        <SSnsLinArea>
+        <SContentTitle className={`contentTitle ${inView ? 'titleDelay fadeUp' : ''}`}>About Me</SContentTitle>
+        <SSnsLinArea className={inView && 'delay fadeUp'}>
           <SSnsLink href="https://twitter.com/Kyosuke_Ochiai">
             <SSnsIcon src="/images/aboutMe/twitter-icon.png" alt="twitterアイコン" />
           </SSnsLink>
@@ -34,8 +34,8 @@ export const AboutMeArea = () => {
           </SSnsLink>
         </SSnsLinArea>
         <SProfileArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
-          <SProfileImg src={profile.image.url} alt="プロフィール画像" />
-          <SProfileTextArea>
+          <SProfileImg className={inView && 'iconAnime'} src={profile.image.url} alt="プロフィール画像" />
+          <SProfileTextArea className={inView && 'delay fadeUp'}>
             <STextFx>
               <SLabel>Name</SLabel>
               <SClon>:</SClon>

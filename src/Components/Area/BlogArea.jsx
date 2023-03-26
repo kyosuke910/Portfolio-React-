@@ -70,7 +70,7 @@ export const BlogArea = () => {
 
   return (
     <SBlogMain className='section'>
-      <SContentTitle className='contentTitle'>Blog</SContentTitle>
+      <SContentTitle className={`contentTitle ${inView ? 'titleDelay fadeUp' : ''}`}>Blog</SContentTitle>
       <SBlogContents className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
         <Slider {...settings}>
           {blogs.map(blog => (
@@ -100,7 +100,7 @@ export const BlogArea = () => {
           ))}
         </Slider>
       </SBlogContents>
-      <SMoreBtn onClick={onClickMoreBtn} className='mainBtn'>Lean More</SMoreBtn>
+      <SMoreBtn onClick={onClickMoreBtn} className={inView && 'delay fadeUp mainBtn'}>Lean More</SMoreBtn>
   </SBlogMain>
   )
 }
