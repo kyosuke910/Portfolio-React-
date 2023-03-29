@@ -40,16 +40,26 @@ export const TopArea = () => {
 const STextArea = styled.div`
   width: 80%;
   margin: auto;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 `
 const SScrollArea = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 15%;
+  @media screen and (max-width: 480px) {
+    top: 60%;
+  }
 `
 const SArrowsText = styled.p`
   text-align: center;
   font-size: 2em;
   opacity: 0;
   transition: 0.5s;
+  @media screen and (max-width: 480px) {
+    font-size: 5em;
+    width: 100vw;
+  }
 `

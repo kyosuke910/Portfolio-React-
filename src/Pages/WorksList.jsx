@@ -11,7 +11,7 @@ export const WorkList = () => {
   useEffect(() => {
     fetchProducts(setWorks)
   },[])
-console.log(works)
+
     // Topボタンを押した際の処理
     const onClickTop = () => {
       // トップページへ遷移
