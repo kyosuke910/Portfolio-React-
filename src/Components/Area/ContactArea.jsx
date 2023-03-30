@@ -146,6 +146,9 @@ export const ContactArea = () => {
 const SContentTitle = styled.h2`
   top: 8%;
   left: 16%;
+  @media screen and (max-width: 480px) {
+    top: 2%;
+  }
 `
 const SContactContents = styled.div`
   background: #707070;
@@ -154,6 +157,12 @@ const SContactContents = styled.div`
   right: 10%;
   height: 85%;
   width: 60%;
+  @media screen and (max-width: 480px) {
+    top: 0;
+    right: 2%;
+    height: 89%;
+    width: 90%;
+  }
 `
 const SInputArea = styled.div`
   display: flex;
@@ -162,14 +171,25 @@ const SInputArea = styled.div`
   justify-content: space-between;
   width: 80%;
   margin: 8em auto 0 auto;
+  @media screen and (max-width: 480px) {
+    margin-top: 18em;
+    width: 90%;
+  }
 `
 const SInputWrap = styled.div`
   margin: 0.3em 0;
   width: 45%;
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
+    width: 49%;
+  }
 `
 const STextAreaWrap = styled.div`
   margin: 0.3em 0;
   width: 100%;
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
+  }
 `
 const SInput = styled.input`
   width: 100%;
@@ -198,6 +218,10 @@ const SSubmitBtn = styled.button`
   transform: translateX(-50%) !important;
   margin-top: 0.8em;
   z-index: 9;
+  @media screen and (max-width: 480px) {
+    left: 5%;
+    width: 85%;
+  }
 `
 const SRequired = styled.span`
   color: #df0000;

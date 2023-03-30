@@ -554,4 +554,17 @@ a:hover {
   #fp-nav.fp-left {
     left: 10px !important;
   }
+  .mainBtn {
+    width: 60%;
+    font-size: 4em;
+    padding: 0.5em 0 0.5em 0
+  }
+  .mainBtn::after {
+    width: 7vw;
+    top: calc(50% - 3px);
+    right: 4vw;
+  }
+  .contentTitle {
+    font-size: 10em;
+  }
 }

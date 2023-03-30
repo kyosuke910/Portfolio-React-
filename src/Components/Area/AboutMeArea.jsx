@@ -55,7 +55,7 @@ export const AboutMeArea = () => {
               ))}
               </SData>
             </STextFx>
-            <span>Skills</span>
+            <SLabel>Skills</SLabel>
             <STextFx>
               <SLabel>　Lang</SLabel>
               <SClon>:</SClon>
@@ -95,6 +95,10 @@ export const AboutMeArea = () => {
 const SContentTitle = styled.h2`
   top: 15%;
   left: 12%;
+  @media screen and (max-width: 480px) {
+    top: 13%;
+    left: 15%;
+  }
 `
 const SSnsLinArea = styled.div`
   position: absolute;
@@ -102,6 +106,12 @@ const SSnsLinArea = styled.div`
   left: 12%;
   display: flex;
   width: 20%;
+  @media screen and (max-width: 480px) {
+    z-index: 10;
+    top: 28%;
+    left: 13%;
+    width: 60%;
+  }
 `
 const SSnsLink = styled.a`
   display: block;
@@ -110,6 +120,9 @@ const SSnsLink = styled.a`
   transition: 0.3s;
   &:hover {
     opacity: 0.8;
+  }
+  @media screen and (max-width: 480px) {
+    margin: 0 1em;
   }
 `
 const SSnsIcon = styled.img`
@@ -122,6 +135,12 @@ const SProfileArea = styled.div`
   position: absolute;
   top: 13%;
   right: 10%;
+  @media screen and (max-width: 480px) {
+    height: 70%;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `
 const SProfileImg = styled.img`
   width: 18%;
@@ -129,6 +148,12 @@ const SProfileImg = styled.img`
   position: absolute;
   top: 40%;
   left: 8%;
+  @media screen and (max-width: 480px) {
+    top: 16%;
+    left: 70%;
+    z-index: 10;
+    width: 25%;
+  }
 `
 const SProfileTextArea = styled.div`
   font-size: 1em;
@@ -139,14 +164,25 @@ const SProfileTextArea = styled.div`
   width: 60%;
   padding: 3em 2em;
   color: #000;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    top: 40%;
+  }
 `
 const STextFx = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  @media screen and (max-width: 480px) {
+    font-size: 2.5em;
+  }
 `
 const SLabel = styled.p`
   width: 30%;
+  @media screen and (max-width: 480px) {
+    white-space: nowrap;
+    width: 35%;
+  }
 `
 const SClon = styled.p`
   width: 10%;
