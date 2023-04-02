@@ -70,7 +70,7 @@ export const BlogList = () => {
                     <SBlogImg src={blog.image.url} alt="Image" />
                     <STextArea>
                       <SBlogTitle>{blog.title}</SBlogTitle>
-                      <p>{blog.headline}</p>
+                      <SHeadLine>{blog.headline}</SHeadLine>
                       <STagArea>
                         {blog.tags.map((tag) => (
                           <STag key={tag.id}><STagIcon/>{tag.tag}</STag>
@@ -124,10 +124,18 @@ const StyledBox = styled(Box)({
 const STitle = styledComponents.h1`
   top: 75%;
   left: 11%;
+  @media screen and (max-width: 480px) {
+    top: 82%;
+    left: 5%;
+    font-size: 8em;
+  }
 `
 const SMainArea = styledComponents.main`
   width: 100%;
   margin-top: 5em;
+  @media screen and (max-width: 480px) {
+    margin-top: 14em;
+  }
 `
 const SImgArea = styledComponents.div`
   position: relative;
@@ -136,25 +144,47 @@ const SImg = styledComponents.img`
   width: 100%;
   height: 25vw;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    height: 40vw;
+  }
 `
 const SBlogListArea = styledComponents.section`
   width: 80%;
   margin: 8em  auto auto auto;
   display: flex;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    margin: 14em  auto auto auto;
+  }
 `
 const SBlogImg = styledComponents.img`
   width: 100%;
   height: 15vw;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    height: 40vw;
+  }
 `
 const STextArea = styledComponents.div`
   width: 100%;
   padding: 1em;
   height: 20vw;
   position: relative;
+  @media screen and (max-width: 480px) {
+    height: 40vw;
+  }
 `
 const SBlogTitle = styledComponents.h2`
   font-size: 1.5em;
+  @media screen and (max-width: 480px) {
+    font-size: 4em;
+  }
+`
+const SHeadLine = styledComponents.p`
+@media screen and (max-width: 480px) {
+  font-size: 3em;
+  padding-left: 0.5em;
+}
 `
 const SDateArea = styledComponents.div`
   position: absolute;
@@ -162,6 +192,9 @@ const SDateArea = styledComponents.div`
 `
 const SDateText = styledComponents.p`
   font-size: 0.8em;
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+  }
 `
 const STagArea = styledComponents.div`
   margin-top: 1em;
@@ -170,6 +203,10 @@ const STagArea = styledComponents.div`
   height: 4vw;
   flex-wrap: wrap;
   font-size: 0.8em;
+  @media screen and (max-width: 480px) {
+    height: 14vw;
+    font-size: 2em;
+  }
 `
 const STag = styledComponents.p`
   background: rgba(0,0,0,0.1);
@@ -193,10 +230,18 @@ const SContentArea = styledComponents.article`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2em;
+  @media screen and (max-width: 480px) {
+    width: 60%;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8em;
+  }
 `
 const SSidebarArea = styledComponents.aside`
   width: 30%;
   padding-left: 5em;
+  @media screen and (max-width: 480px) {
+    width: 40%;
+  }
 `
 const SSidebarLabel = styledComponents.h1`
   font-size: 1.5em;
@@ -205,6 +250,10 @@ const SSidebarLabel = styledComponents.h1`
   line-height: 0.8;
   padding-left: 0.5em;
   margin-bottom: 0.5em;
+  @media screen and (max-width: 480px) {
+    font-size: 5em;
+    border-left: 2px solid #fff;
+  }
 `
 const SArchiveLabel = styledComponents(SSidebarLabel)`
   margin-top: 2em;
@@ -216,6 +265,9 @@ const SSidebarContents = styledComponents.li`
   cursor: pointer;
   &:hover {
     opacity: 0.6;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
   }
 `
 const SButtonArea = styledComponents.div`

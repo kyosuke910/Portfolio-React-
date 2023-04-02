@@ -110,7 +110,7 @@ const STopLink = styled.a`
 const SSpNavArea = styled.div`
   width: 15vw;
   height: 15vw;
-  position: relative;
+  position: fixed;
   top: 1vw;
   left: 80%;
   cursor: pointer;

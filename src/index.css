@@ -511,9 +511,10 @@ a:hover {
     top: 0;
     left: 0;
     overflow: hidden;
-    background: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.6);
     z-index: -1;
     opacity: 0;
+    overflow: hidden;
   }
   .spDrawerMenuArea.active {
     opacity: 1;
@@ -521,7 +522,7 @@ a:hover {
     z-index: 10000;
   }
   .spDrawerMenu {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -1000px;
     width: 60%;
@@ -566,5 +567,22 @@ a:hover {
   }
   .contentTitle {
     font-size: 10em;
+  }
+  .slick-slider {
+    padding: 0px 3em;
+  }
+  .arrow--left {
+    display: none;
+  }
+  .arrow--right {
+    display: none;
+  }
+  .subBtn {
+    width: 55%;
+    padding: 0.8em 0;
+    font-size: 4em;
+  }
+  .slick-slider {
+    top: 10%;
   }
 }

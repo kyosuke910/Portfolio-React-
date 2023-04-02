@@ -147,7 +147,8 @@ const SContentTitle = styled.h2`
   top: 8%;
   left: 16%;
   @media screen and (max-width: 480px) {
-    top: 2%;
+    top: 11%;
+    left: 12%;
   }
 `
 const SContactContents = styled.div`
@@ -158,7 +159,7 @@ const SContactContents = styled.div`
   height: 85%;
   width: 60%;
   @media screen and (max-width: 480px) {
-    top: 0;
+    top: 10%;
     right: 2%;
     height: 89%;
     width: 90%;

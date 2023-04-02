@@ -77,6 +77,9 @@ export const WorkList = () => {
 const SMainArea = styled.main`
   width: 100%;
   margin-top: 5em;
+  @media screen and (max-width: 480px) {
+    margin-top: 14em;
+  }
 `
 const SImgArea = styled.div`
   position: relative;
@@ -85,17 +88,31 @@ const SImg = styled.img`
   width: 100%;
   height: 25vw;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    height: 40vw;
+  }
 `
 const STitle = styled.h1`
   top: 75%;
   left: 11%;
+  @media screen and (max-width: 480px) {
+    top: 80%;
+    left: 5%;
+    font-size: 8em;
+  }
 `
 const SProductsArea = styled.section`
   width: 80%;
   margin: 8em auto 0 auto;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+  }
 `
 const SProductWrapper = styled.div`
   margin-bottom: 6em;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 10em;
+  }
 `
 const SProductsLabelArea = styled.div`
   display: flex;
@@ -104,6 +121,9 @@ const SProductsLabelArea = styled.div`
   border-left: 1em solid;
   padding: 0.5em 0 0.5em 2em;
   margin-bottom: 3em;
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+  }
 `
 const SProductsLabel = styled.div`
   display: flex;
@@ -123,6 +143,10 @@ width: 100%;
 display: grid;
 grid-template-columns: repeat(2, 1fr);
 gap: 3em;
+@media screen and (max-width: 480px) {
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10em;
+}
 `
 const SContent = styled.a`
   display: block;
@@ -131,12 +155,23 @@ const SContent = styled.a`
 const SContentTitle = styled.h2`
   font-size: 1.5em;
   margin: 0.5em 0;
+  @media screen and (max-width: 480px) {
+    font-size: 4em;
+    margin: 0.8em 0;
+  }
 `
 const SContentTxt = styled.p`
   font-size: 0.8em;
+  @media screen and (max-width: 480px) {
+    font-size: 2.8em;
+    line-height: 1.8;
+  }
 `
 const SButtonArea = styled.div`
   width: 100%;
   text-align: center;
   padding: 4em 0 6em 0;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 20em;
+  }
 `

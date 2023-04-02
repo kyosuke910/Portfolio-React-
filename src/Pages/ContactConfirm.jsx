@@ -105,16 +105,26 @@ const STopImageArea = styled.section`
   height: 20vw;
   background: #fff;
   text-align: center;
+  @media screen and (max-width: 480px) {
+    height: 40vw;
+    margin-top: 14em;
+  }
 `
 const STopImage = styled.img`
   width: 60%;
   height: 100%;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 `
 const SContentsTitle = styled.h1`
   font-size: 8em;
   text-align: center;
   margin-bottom: 0.8em;
+  @media screen and (max-width: 480px) {
+    margin-top: 1em;
+  }
 `
 const STextArea = styled.div`
   display: flex;
@@ -122,12 +132,22 @@ const STextArea = styled.div`
   width: 40%;
   margin: 0.5em auto;
   font-size: 1.5em;
+  @media screen and (max-width: 480px) {
+    width: 80%;
+    font-size: 4em;
+  }
 `
 const SLabel = styled.p`
   width: 40%;
+  @media screen and (max-width: 480px) {
+    width: 50%;
+  }
 `
 const SClon = styled.p`
   width: 10%;
+  @media screen and (max-width: 480px) {
+    width: 5%;
+  }
 `
 const SData = styled.p`
   width: 50%;

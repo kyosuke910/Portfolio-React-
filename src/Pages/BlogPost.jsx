@@ -35,7 +35,7 @@ export const BlogPost = () => {
     }
 
   return(
-    <main>
+    <SMainContents>
       <SubPageHeader />
       {blog ? (
       <>
@@ -44,8 +44,8 @@ export const BlogPost = () => {
             <SBlogArea>
               <SBlogTitle>{blog.title}</SBlogTitle>
               <SBlogBody dangerouslySetInnerHTML={{__html: blog.body}}></SBlogBody>
-              <p>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</p>
-              <p>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</p>
+              <SDateTxt>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateTxt>
+              <SDateTxt>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateTxt>
               <STagArea>
                   {blog.tags.map((tag) => (
                     <STag key={tag.id}><STagIcon/>{tag.tag}</STag>
@@ -76,12 +76,20 @@ export const BlogPost = () => {
         <span className="loader"></span>
       </div>
     )}
-    </main>
+    </SMainContents>
   )
 }
+const SMainContents = styled.main`
+  @media screen and (max-width: 480px) {
+    margin-top: 14em;
+  }
+`
 const SContentsArea = styled.section`
   width: 60%;
   margin: 5em auto 0 auto;
+  @media screen and (max-width: 480px) {
+    width: 80%;
+  }
 `
 const SBlogArea = styled.div`
   padding: 2em 1em 4em 1em;
@@ -92,12 +100,25 @@ const SBlogTitle = styled.h1`
   padding-left: 0.8em;
   border-left: 6px solid #fff;
   line-height: 0.8;
+  @media screen and (max-width: 480px) {
+    font-size: 6em;
+    margin: 1em 0;
+  }
 `
 const SBlogImage = styled.img`
   width: 100%;
 `
 const SBlogBody = styled.div`
   margin-bottom: 6em;
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
+    margin-bottom: 3em;
+  }
+`
+const SDateTxt = styled.p`
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
+  }
 `
 const SButtonArea = styled.div`
   width: 100%;
@@ -115,6 +136,11 @@ const STagArea = styled.div`
   flex-wrap: wrap;
   font-size: 0.8em;
   color: #000;
+  @media screen and (max-width: 480px) {
+    height: 20vw;
+    margin: 3em 0;
+    font-size: 2em;
+  }
 `
 const STag = styled.p`
   background: rgba(255,255,255,0.8);

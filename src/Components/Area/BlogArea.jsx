@@ -57,7 +57,17 @@ export const BlogArea = () => {
     autoplaySpeed: 3000, // autoplayの速度
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    centerMode: true
+    centerMode: true,
+    responsive: [
+      {
+        breakpoint: 768, // スマートフォンのビューポートの幅
+        settings: {
+          slidesToShow: 1, // 一度に表示するスライド数
+          slidesToScroll: 1, // 一度にスクロールするスライド数
+          autoplay: false, // autoplayをするか
+        },
+      },
+    ],
   }
   
   const onClickLink = (data) => {
@@ -82,7 +92,7 @@ export const BlogArea = () => {
                     <SBlogImg src={blog.image.url} alt="Image" />
                     <STextArea>
                       <SBlogTitle>{blog.title}</SBlogTitle>
-                      <p>{blog.headline}</p>
+                      <SHeadline>{blog.headline}</SHeadline>
                       <STagArea>
                         {blog.tags.map((tag) => (
                           <STag key={tag.id}><STagIcon/>{tag.tag}</STag>
@@ -119,6 +129,10 @@ const SBlogMain = styledComponents.section`
 const SContentTitle = styledComponents.h2`
   top: 12%;
   left: 6%;
+  @media screen and (max-width: 480px) {
+    top: 15%;
+    left: 13%;
+  }
 `
 const SBlogContents = styledComponents.div`
   background: #707070;
@@ -128,19 +142,32 @@ const SBlogContents = styledComponents.div`
   top: 13%;
   left: 50%;
   transform: translateX(-50%);
+  @media screen and (max-width: 480px) {
+    top: 13%;
+    height: 70%;
+  }
 `
 const SBlogImg = styledComponents.img`
   width: 100%;
   height: 12vw;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    height: 35vw;
+  }
 `
 const STextArea = styledComponents.div`
   width: 100%;
   padding: 1em;
   height: 15vw;
+  @media screen and (max-width: 480px) {
+    height: 35vw;
+  }
 `
 const SBlogTitle = styledComponents.h2`
   font-size: 1.5em;
+  @media screen and (max-width: 480px) {
+    font-size: 3em;
+  }
 `
 const SDateArea = styledComponents.div`
   position: absolute;
@@ -148,6 +175,9 @@ const SDateArea = styledComponents.div`
 `
 const SDateText = styledComponents.p`
   font-size: 0.8em;
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+  }
 `
 const STagArea = styledComponents.div`
   margin-top: 1em;
@@ -156,6 +186,9 @@ const STagArea = styledComponents.div`
   height: 4vw;
   flex-wrap: wrap;
   font-size: 0.8em;
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+  }
 `
 const STag = styledComponents.p`
   background: rgba(0,0,0,0.1);
@@ -170,6 +203,10 @@ const STagIcon = styledComponents(LocalOffer)`
   width: 0.8em !important;
   height: 0.8em !important;
   margin-right: 0.3em;
+  @media screen and (max-width: 480px) {
+    width: 0.5em !important;
+  height: 0.5em !important;
+  }
 `
 const SBlogLink = styledComponents.div`
   cursor: pointer;
@@ -178,4 +215,13 @@ const SMoreBtn = styledComponents.button`
   position: absolute;
   bottom: 9%;
   right: 5%;
+  @media screen and (max-width: 480px) {
+    right: 20%;
+    bottom: 25%;
+  }
+`
+const SHeadline = styledComponents.p`
+@media screen and (max-width: 480px) {
+  font-size: 2.5em;
+}
 `
