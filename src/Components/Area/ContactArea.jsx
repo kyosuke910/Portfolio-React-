@@ -194,15 +194,15 @@ const STextAreaWrap = styled.div`
 `
 const SInput = styled.input`
   width: 100%;
-  padding: 0.8em;
+  padding: 0.6em;
 `
 const SSelectForm = styled.select`
   width: 100%;
-  padding: 0.8em;
+  padding: 0.6em;
 `
 const STextArea = styled.textarea`
   width: 100%;
-  height: 12vh;
+  height: 10vh;
   padding: 0.8em;
   resize: none;
 `

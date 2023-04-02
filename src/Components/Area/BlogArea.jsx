@@ -215,7 +215,7 @@ const SBlogLink = styledComponents.div`
 `
 const SMoreBtn = styledComponents.button`
   position: absolute;
-  bottom: 9%;
+  bottom: 6vh;
   right: 5%;
   @media screen and (max-width: 480px) {
     right: 20%;
