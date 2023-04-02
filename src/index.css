@@ -31,6 +31,10 @@ a:hover {
   color: #fff;
 }
 
+.dpNone {
+  display: none;
+}
+
 .loadingArea {
   background: #000;
   position: fixed;
@@ -451,13 +455,16 @@ a:hover {
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-delay: 1s;
+    opacity: 0;
   }
   @keyframes rotateYAnime {
     from {
       transform: rotateY(0);
+      opacity: 0;
     }
     to {
       transform: rotateY(-360deg);
+      opacity: 1;
     }
   }
 
@@ -582,7 +589,7 @@ a:hover {
     padding: 0.8em 0;
     font-size: 4em;
   }
-  .slick-slider {
+  /* .slick-slider {
     top: 10%;
-  }
+  } */
 }

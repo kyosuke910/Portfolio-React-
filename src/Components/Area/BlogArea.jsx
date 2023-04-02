@@ -110,7 +110,7 @@ export const BlogArea = () => {
           ))}
         </Slider>
       </SBlogContents>
-      <SMoreBtn onClick={onClickMoreBtn} className={inView && 'delay fadeUp mainBtn'}>Lean More</SMoreBtn>
+      <SMoreBtn onClick={onClickMoreBtn} className={inView ? 'delay fadeUp mainBtn' : 'dpNone'}>Lean More</SMoreBtn>
   </SBlogMain>
   )
 }
@@ -124,7 +124,9 @@ const StyledBox = styled(Box)({
 
 const SBlogMain = styledComponents.section`
   width: 100vw;
-  height: 100vh;
+  @media screen and (max-width: 480px) {
+    padding-top: 35vw;
+  }
 `
 const SContentTitle = styledComponents.h2`
   top: 12%;
@@ -143,8 +145,8 @@ const SBlogContents = styledComponents.div`
   left: 50%;
   transform: translateX(-50%);
   @media screen and (max-width: 480px) {
-    top: 13%;
-    height: 70%;
+    top: 30%;
+    height: 65%;
   }
 `
 const SBlogImg = styledComponents.img`
@@ -217,7 +219,7 @@ const SMoreBtn = styledComponents.button`
   right: 5%;
   @media screen and (max-width: 480px) {
     right: 20%;
-    bottom: 25%;
+    bottom: 10%;
   }
 `
 const SHeadline = styledComponents.p`

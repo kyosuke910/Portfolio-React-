@@ -147,7 +147,7 @@ const SContentTitle = styled.h2`
   top: 8%;
   left: 16%;
   @media screen and (max-width: 480px) {
-    top: 11%;
+    top: 9%;
     left: 12%;
   }
 `
@@ -159,9 +159,9 @@ const SContactContents = styled.div`
   height: 85%;
   width: 60%;
   @media screen and (max-width: 480px) {
-    top: 10%;
+    top: 22%;
     right: 2%;
-    height: 89%;
+    height: 77%;
     width: 90%;
   }
 `
@@ -173,7 +173,7 @@ const SInputArea = styled.div`
   width: 80%;
   margin: 8em auto 0 auto;
   @media screen and (max-width: 480px) {
-    margin-top: 18em;
+    margin-top: 2em;
     width: 90%;
   }
 `

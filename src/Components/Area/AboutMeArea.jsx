@@ -34,8 +34,8 @@ export const AboutMeArea = () => {
           </SSnsLink>
         </SSnsLinArea>
         <SProfileArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
-          <SProfileImg className={inView && 'iconAnime'} src={profile.image.url} alt="プロフィール画像" />
-          <SProfileTextArea className={inView && 'delay fadeUp'}>
+          <SProfileImg className={inView ? 'iconAnime' : 'dpNone'} src={profile.image.url} alt="プロフィール画像" />
+          <SProfileTextArea className={inView ? 'delay fadeUp' : 'dpNone'}>
             <STextFx>
               <SLabel>Name</SLabel>
               <SClon>:</SClon>
@@ -55,7 +55,7 @@ export const AboutMeArea = () => {
               ))}
               </SData>
             </STextFx>
-            <SLabel>Skills</SLabel>
+            <SSkillLabel>Skills</SSkillLabel>
             <STextFx>
               <SLabel>　Lang</SLabel>
               <SClon>:</SClon>
@@ -96,8 +96,8 @@ const SContentTitle = styled.h2`
   top: 15%;
   left: 12%;
   @media screen and (max-width: 480px) {
-    top: 13%;
-    left: 15%;
+    top: 15%;
+    left: 12%;
   }
 `
 const SSnsLinArea = styled.div`
@@ -108,7 +108,7 @@ const SSnsLinArea = styled.div`
   width: 20%;
   @media screen and (max-width: 480px) {
     z-index: 10;
-    top: 28%;
+    top: 36%;
     left: 13%;
     width: 60%;
   }
@@ -136,7 +136,8 @@ const SProfileArea = styled.div`
   top: 13%;
   right: 10%;
   @media screen and (max-width: 480px) {
-    height: 70%;
+    top: 30%;
+    height: 60%;
     width: 80%;
     left: 50%;
     transform: translateX(-50%);
@@ -149,9 +150,9 @@ const SProfileImg = styled.img`
   top: 40%;
   left: 8%;
   @media screen and (max-width: 480px) {
-    top: 16%;
+    top: 4%;
     left: 70%;
-    z-index: 10;
+    z-index: 8;
     width: 25%;
   }
 `
@@ -166,7 +167,7 @@ const SProfileTextArea = styled.div`
   color: #000;
   @media screen and (max-width: 480px) {
     width: 90%;
-    top: 40%;
+    top: 30%;
   }
 `
 const STextFx = styled.div`
@@ -190,4 +191,9 @@ const SClon = styled.p`
 const SData = styled.p`
   width: 60%;
   text-align: left;
+`
+const SSkillLabel = styled.p`
+  @media screen and (max-width: 480px) {
+    font-size: 2.5em;
+  }
 `

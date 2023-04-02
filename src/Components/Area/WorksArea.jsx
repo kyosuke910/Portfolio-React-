@@ -21,7 +21,7 @@ export const WorksArea = () => {
         <SImageArea className={`cover-side ${inView ? 'inview' : ''}`} ref={ref}>
           <SImage src="images/works/work_img.jpg" alt="Works画像" />
         </SImageArea>
-        <SMoreBtn onClick={onClickMoreBtn} className={inView && 'delay fadeUp mainBtn'}>Lean More</SMoreBtn>
+        <SMoreBtn onClick={onClickMoreBtn} className={inView ? 'delay fadeUp mainBtn' : 'dpNone'}>Lean More</SMoreBtn>
       </SContents>
     </section>
   )
@@ -33,7 +33,7 @@ const SContentTitle = styled.h2`
   top: 20%;
   left: 15%;
   @media screen and (max-width: 480px) {
-    top: 10%;
+    top: 20%;
   }
 `
 const SImageArea = styled.div`
@@ -42,7 +42,7 @@ const SImageArea = styled.div`
   right: 10%;
   width: 60%;
   @media screen and (max-width: 480px) {
-    top: 25%;
+    top: 35%;
     width: 85%;
     left: 11%;
   }
@@ -58,7 +58,8 @@ const SMoreBtn = styled.button`
   top: 40%;
   left: 18%;
   @media screen and (max-width: 480px) {
-    top: 82%;
-    left: 23%;
+    position: absolute;
+    top: 80%;
+    left: 21%;
   }
 `
