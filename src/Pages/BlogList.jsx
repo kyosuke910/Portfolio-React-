@@ -260,7 +260,6 @@ const SArchiveLabel = styledComponents(SSidebarLabel)`
 `
 const SSidebarContents = styledComponents.li`
   border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
   padding: 0.5em;
   cursor: pointer;
   &:hover {
@@ -268,6 +267,9 @@ const SSidebarContents = styledComponents.li`
   }
   @media screen and (max-width: 480px) {
     font-size: 3em;
+  }
+  &:last-child {
+    border-bottom: 1px solid #fff;
   }
 `
 const SButtonArea = styledComponents.div`

@@ -102,7 +102,7 @@ const SContentTitle = styled.h2`
 `
 const SSnsLinArea = styled.div`
   position: absolute;
-  top: 35%;
+  top: 39%;
   left: 12%;
   display: flex;
   width: 20%;
