@@ -14,6 +14,8 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { LocalOffer } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
 export const BlogArea = () => {
   const history = useHistory()
@@ -99,8 +101,8 @@ export const BlogArea = () => {
                         ))}
                       </STagArea>
                       <SDateArea>
-                        <SDateText>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
-                        <SDateText>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
+                        <SDateText><STimeIcon />{blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
+                        <SDateText><SUpdateIcon />{blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
                       </SDateArea>
                     </STextArea>
                   </Paper>
@@ -226,4 +228,14 @@ const SHeadline = styledComponents.p`
 @media screen and (max-width: 480px) {
   font-size: 2.5em;
 }
+`
+const STimeIcon = styled(AccessTimeIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
+`
+const SUpdateIcon = styled(RefreshIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
 `

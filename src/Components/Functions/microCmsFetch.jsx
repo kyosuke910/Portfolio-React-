@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { createClient } from 'microcms-js-sdk'
 
 const profileApiKey = process.env.REACT_APP_PROFILE_API_KEY
 const blogApiKey = process.env.REACT_APP_BLOG_API_KEY
@@ -73,4 +74,30 @@ export const blogCategoryFetchAll = (setArticles) => {
     setArticles(result.data.contents)
   };
   fetchData()
+}
+// ブログデータアップデート
+export const blogDataUpdate = async(content,goodNum) => {
+  const client = createClient({
+    serviceDomain: 'k-portfolio-blog',
+    apiKey: blogApiKey
+  })
+
+  const contentId = content.id
+
+  const dataToUpdate = {
+    goodOfNumber: goodNum
+  }
+
+  client
+  .update({
+    endpoint: 'blog', // エンドポイントを指定
+    contentId: contentId, // 更新するコンテンツのIDを指定
+    content: dataToUpdate,
+  })
+  .then(response => {
+    console.log('更新が成功しました:', response)
+  })
+  .catch(error => {
+    console.error('更新に失敗しました:', error)
+  })
 }

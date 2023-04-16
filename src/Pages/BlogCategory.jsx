@@ -11,6 +11,8 @@ import { LocalOffer } from '@mui/icons-material'
 import { createTheme } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import { AiOutlineLeft } from 'react-icons/ai'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
 export const BlogCategory = () => {
   const idParam = window.location.search
@@ -18,12 +20,14 @@ export const BlogCategory = () => {
 
   const history = useHistory()
   const [blogs, setBlogs] = useState([])
+  const [archiveData, setArchiveData] = useState([])
   const [category, setCategory] = useState([])
   const [archive, setArchive] = useState([])
   const [categoryTitle, setCategoryTitle] = useState()
 
   useEffect(() => {
     blogDataFetchAll((data) => {
+      setArchiveData(data)
       const filterBlogs = data.filter((value) => {
         return value.category.categoryParam === categoryName
       })
@@ -33,10 +37,10 @@ export const BlogCategory = () => {
   }, [categoryName])
 
   useEffect(() => {
-    const publishedAts = blogs.map((blog) => blog.publishedAt.substr(0,7))
+    const publishedAts = archiveData.map((blog) => blog.publishedAt.substr(0,7))
     const uniquePublishedAts = [...new Set(publishedAts)]
     setArchive(uniquePublishedAts)
-  },[blogs])
+  },[archiveData])
   
   useEffect(() => {
     const filteredCategories = category.filter((c) => c.categoryParam === categoryName);
@@ -92,8 +96,8 @@ export const BlogCategory = () => {
                         ))}
                       </STagArea>
                       <SDateArea>
-                        <SDateText>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
-                        <SDateText>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
+                        <SDateText><STimeIcon />{blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
+                        <SDateText><SUpdateIcon />{blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
                       </SDateArea>
                     </STextArea>
                   </Paper>
@@ -304,4 +308,14 @@ const SCategoryTitle = styledComponents.p`
     font-size: 6em;
     border-left: 3px solid #fff;
   }
+`
+const STimeIcon = styled(AccessTimeIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
+`
+const SUpdateIcon = styled(RefreshIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
 `

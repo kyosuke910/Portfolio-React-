@@ -1,24 +1,28 @@
 import { SubPageHeader } from "../Components/Header/Header"
 import { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
-import { fetchBlogById } from "../Components/Functions/microCmsFetch"
+import { blogDataUpdate, fetchBlogById } from "../Components/Functions/microCmsFetch"
 import styled from "styled-components"
 import { AiOutlineLeft } from 'react-icons/ai'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { LocalOffer } from '@mui/icons-material'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
 export const BlogPost = () => {
   const idParam = window.location.search
   const blogId = idParam.slice(1)
-
   const [blog, setBlog] = useState()
+  const [good, setGood] = useState()
+  const [goodBtnPushFlag, setGoodBtnPushFlag] = useState(false)
   const location = useLocation()
   const history = useHistory()
-
+  
   useEffect(() => {
     const getBlogData = async () => {
       const blogData = await fetchBlogById(blogId)
       setBlog(blogData.contents[0])
+      setGood(blogData.contents[0].goodOfNumber)
     }
     getBlogData()
   }, [blogId, setBlog])
@@ -33,6 +37,21 @@ export const BlogPost = () => {
       // トップページへ遷移
       history.push('/#top')
     }
+    const onClickGoodBtn = async () => {
+      let goodNum = null
+      if(goodBtnPushFlag === true) {
+        if(good > 0) {
+          goodNum = good - 1
+        } else {
+          goodNum = 0
+        }
+      } else {
+        goodNum = good + 1
+      }
+      const result = await blogDataUpdate(blog,goodNum)
+      setGood(goodNum)
+      setGoodBtnPushFlag(!goodBtnPushFlag)
+    }
 
   return(
     <SMainContents>
@@ -44,17 +63,17 @@ export const BlogPost = () => {
             <SBlogArea>
               <SBlogTitle>{blog.title}</SBlogTitle>
               <SBlogBody dangerouslySetInnerHTML={{__html: blog.body}}></SBlogBody>
-              <SDateTxt>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateTxt>
-              <SDateTxt>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateTxt>
+              <SDateTxt><STimeIcon />{blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateTxt>
+              <SDateTxt><SUpdateIcon />{blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateTxt>
               <STagArea>
                   {blog.tags.map((tag) => (
                     <STag key={tag.id}><STagIcon/>{tag.tag}</STag>
                   ))}
               </STagArea>
-              <SFavoriteArea>
-                <SFavoriteText>いいね!</SFavoriteText>
+              <SFavoriteArea onClick={onClickGoodBtn} className={goodBtnPushFlag === true && 'goodActive'}>
+                <SFavoriteText className={goodBtnPushFlag === true && 'goodActiveTxt'}>いいね!</SFavoriteText>
                 <SFavoriteIcon />
-                <SFavoriteText>0</SFavoriteText>
+                <SFavoriteText className={goodBtnPushFlag === true && 'goodActiveTxt'}>{good}</SFavoriteText>
               </SFavoriteArea>
             </SBlogArea>
         </SContentsArea>
@@ -110,6 +129,7 @@ const SBlogImage = styled.img`
 `
 const SBlogBody = styled.div`
   margin-bottom: 6em;
+  line-height: 1.6;
   @media screen and (max-width: 480px) {
     font-size: 3em;
     margin-bottom: 3em;
@@ -176,4 +196,14 @@ const SFavoriteIcon = styled(FavoriteIcon)`
 `
 const SFavoriteText = styled.span`
   color: #fff;
+`
+const STimeIcon = styled(AccessTimeIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
+`
+const SUpdateIcon = styled(RefreshIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
 `

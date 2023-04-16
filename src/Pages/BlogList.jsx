@@ -11,6 +11,8 @@ import { LocalOffer } from '@mui/icons-material'
 import { createTheme } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import { AiOutlineLeft } from 'react-icons/ai'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
 export const BlogList = () => {
   const history = useHistory()
@@ -77,8 +79,8 @@ export const BlogList = () => {
                         ))}
                       </STagArea>
                       <SDateArea>
-                        <SDateText>投稿日 : {blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
-                        <SDateText>更新日 : {blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
+                        <SDateText><STimeIcon />{blog.publishedAt && blog.publishedAt.substr(0,10)}</SDateText>
+                        <SDateText><SUpdateIcon />{blog.revisedAt && blog.revisedAt.substr(0,10)}</SDateText>
                       </SDateArea>
                     </STextArea>
                   </Paper>
@@ -276,4 +278,14 @@ const SButtonArea = styledComponents.div`
   width: 100%;
   text-align: center;
   padding: 4em 0 6em 0;
+`
+const STimeIcon = styled(AccessTimeIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
+`
+const SUpdateIcon = styled(RefreshIcon)`
+  vertical-align: bottom;
+  font-size: 1.4em;
+  margin-right: 0.3em;
 `
